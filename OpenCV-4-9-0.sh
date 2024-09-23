@@ -35,9 +35,9 @@ install_opencv () {
       exit 1
   fi
   
-  echo "Installing OpenCV 4.9.0 on your Nano"
-  echo "It will take several hours!"
-
+  echo "Installing OpenCV 4.10.0 on your Nano"
+  echo "It will take 3.5 hours !"
+  
   # reveal the CUDA location
   cd ~
   sudo sh -c "echo '/usr/local/cuda/lib64' >> /etc/ld.so.conf.d/nvidia-tegra.conf"
@@ -90,7 +90,7 @@ install_opencv () {
   # remove old versions or previous builds
   cd ~ 
   sudo rm -rf opencv*
-  # download version 4.9.0
+  # download the latest version
   git clone --branch 4.9.0 --depth=1 https://github.com/opencv/opencv.git
   git clone --branch 4.9.0 --depth=1 https://github.com/opencv/opencv_contrib.git
   
