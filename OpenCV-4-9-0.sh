@@ -43,6 +43,15 @@ install_opencv () {
   sudo sh -c "echo '/usr/local/cuda/lib64' >> /etc/ld.so.conf.d/nvidia-tegra.conf"
   sudo ldconfig
   
+  # install the Jetson Nano dependencies first
+  if [[ $model == *"Jetson Nano"* ]]; then
+    sudo apt-get install -y build-essential git unzip pkg-config zlib1g-dev
+    sudo apt-get install -y python3-dev python3-numpy
+    sudo apt-get install -y python-dev python-numpy
+    sudo apt-get install -y gstreamer1.0-tools libgstreamer-plugins-base1.0-dev
+    sudo apt-get install -y libgstreamer-plugins-good1.0-dev
+    sudo apt-get install -y libtbb2 libgtk-3-dev v4l2ucp libxine2-dev
+  fi
   
   if [ -f /etc/os-release ]; then
       # Source the /etc/os-release file to get variables
@@ -77,12 +86,7 @@ install_opencv () {
   sudo apt-get install -y liblapack-dev liblapacke-dev libeigen3-dev gfortran
   sudo apt-get install -y libhdf5-dev libprotobuf-dev protobuf-compiler
   sudo apt-get install -y libgoogle-glog-dev libgflags-dev
-  sudo apt-get install -y build-essential git unzip pkg-config zlib1g-dev
-  sudo apt-get install -y python3-dev python3-numpy
-  sudo apt-get install -y python-dev python-numpy
-  sudo apt-get install -y gstreamer1.0-tools libgstreamer-plugins-base1.0-dev
-  sudo apt-get install -y libgstreamer-plugins-good1.0-dev
-  sudo apt-get install -y libtbb2 libgtk-3-dev v4l2ucp libxine2-dev
+ 
   # remove old versions or previous builds
   cd ~ 
   sudo rm -rf opencv*
