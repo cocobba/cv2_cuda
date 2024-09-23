@@ -10,6 +10,7 @@ install_opencv () {
       if [[ $model == *"Orin"* ]]; then
           echo "Detecting a Jetson Nano Orin."
           # Orin에 필요한 의존성 설치
+          sudo apt-get update
           sudo apt-get install -y build-essential git unzip pkg-config zlib1g-dev
           sudo apt-get install -y python3-dev python3-numpy
           sudo apt-get install -y python-dev python-numpy
@@ -20,16 +21,16 @@ install_opencv () {
           ARCH=8.7
           PTX="sm_87"
       else
-          echo "Unable to determine the Jetson Nano model."
+          echo "Unable to determine the Jetson Nano Orin model."
           exit 1
       fi
       echo ""
   else
-      echo "Error: /proc/device-tree/model not found. Are you sure this is a Jetson Nano or Orin?"
+      echo "Error: /proc/device-tree/model not found. Are you sure this is a Jetson Nano Orin?"
       exit 1
   fi
   
-  echo "Installing OpenCV 4.9.0 on your Nano"
+  echo "Installing OpenCV 4.9.0 on your Nano Orin"
   echo "It will take several hours!"
   
   # CUDA 경로 설정
@@ -140,7 +141,7 @@ install_opencv () {
   sudo apt-get update
   
   echo "Congratulations!"
-  echo "You've successfully installed OpenCV 4.9.0 on your Nano"
+  echo "You've successfully installed OpenCV 4.9.0 on your Nano Orin"
 }
 
 cd ~
